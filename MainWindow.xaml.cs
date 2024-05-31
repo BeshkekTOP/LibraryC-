@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,17 +22,16 @@ namespace WPFApp
     {
         public MainWindow()
         {
-
+            InitializeComponent();
 
             Person person = new Person { Name = "Максим Лавров", Age = 30 };
             byte[] serializedData = new Serializer().Serialize(person);
             Person deserializedPerson = new Serializer().Deserialize<Person>(serializedData);
 
-            Console.WriteLine("Сериализация: " + serializedData.Length);
-            Console.WriteLine("Десериализация: " + deserializedPerson.Name + " " + deserializedPerson.Age);
+            serializationResultTextBlock.Text = $"Сериализация: {serializedData.Length} bytes";
+            deserializationResultTextBox.Text = $"Десериализация: {deserializedPerson.Name} {deserializedPerson.Age}";
         }
     }
-
     [Serializable]
     public class Person
     {
